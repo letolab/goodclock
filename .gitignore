@@ -1,0 +1,9 @@
+*.db
+*.pyc
+.idea/
+.ve/
+.DS_Store
+.vagrant
+settings_local.py
+spotify_appkey.key
+

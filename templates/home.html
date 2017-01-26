@@ -1,0 +1,86 @@
+<!doctype html>
+<head>
+
+  <title>Goodclock</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="icon" href="/static/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/static/touch-icon-60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/touch-icon-76.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/static/touch-icon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/static/touch-icon-152.png">
+
+  <script src="https://use.typekit.net/ogr0nsu.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+  <!-- This goes into the header -->
+  <link rel="stylesheet" href="https://d1orqdsmyxzawu.cloudfront.net/bootstrap/4.0.0-alpha.4/dist/css/bootstrap.min.css">
+
+
+  <!-- This goes before </body> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+</head>
+
+<body class="container">
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="display-3" style="margin-top: 40px">Goodclock</h1>
+      <p>The time now is <b>{{ current_time }}</b>. {% if alarm_time %}You'll wake up at {{ '%02d' % alarm_time.0|int }}:{{ '%02d' % alarm_time.1|int }}{% endif %}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Alarm time:</h2>
+
+      <form class="form-inline" action="/alarm/set" method="POST" style="margin-top: 20px">
+        <div class="form-group">
+          <input class="form-control" type="time" name="time" id="time" style="font-size:40px; text-align:center" value="{% if alarm_time %}{{ '%02d' % alarm_time.0|int }}:{{ '%02d' % alarm_time.1|int }}{% endif %}">
+          <button type="submit" class="btn btn-danger btn-block">Set alarm</button>
+        </div>
+      </form>
+
+      <p><br /></p>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 style="margin-top: 40px">Settings</h2>
+
+        <p>{% if user_playlist %}<a href="{{user_playlist }}" class="btn btn-primary">Goodclock Playlist</a>{% else %}No playlist configured.{% endif %}</p>
+
+        <p>Spotify user: {% if username %}{{ username }}{% else %}Not logged in.{% endif %}</p>
+
+        <a class="btn btn-secondary" href="/spotify-oauth/login">Spotify login</a>
+
+        <p><br /></p>
+
+        <form class="form" action="/alarm/simulate" method="POST">
+          <button type="submit" class="btn btn-secondary">Simulate alarm</button>
+        </form>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <hr />
+      <br />
+      <div class="small text-muted">Made with ❤ by <a href="https://weareleto.com">LETO</a> in London</div>
+      <br />
+      <div class="small text-muted">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      <br /><br />
+    </div>
+  </div>
+
+</body>
