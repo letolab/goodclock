@@ -4,7 +4,7 @@
 
 This repository contains the Flask code for The Good Alarm Clock powered by Raspberry Pi - a [LETO](https://weareleto.com) hackathon project.
 
-[Read the full write-up](http://weareleto.com/the-good-alarm-clock/) on what this is all about on our blog.
+[Read the full write-up](http://weareleto.com/experiments/good-alarm-clock/) on what this is all about on our blog.
 
 ## Installation
 
